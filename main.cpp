@@ -1,7 +1,115 @@
 #include <iostream>
 using namespace std;
 
-int main() {
+template <typename T>
+class Nodo {
+public:
+	T dato;
+	Nodo* siguiente;
+	Nodo(T dato) : dato(dato), siguiente(nullptr) {}
+};
+
+template <typename T>
+class Lista {
+private:
+	Nodo<T>* cabeza;
+public:
+	Lista() :cabeza(nullptr) {};
+
+	void agregarElementos() {
+		int cantidadElementos;
+		cout << "\nIngrese la cantidad de elementos que utilizará (enteros): ";
+		cin >> cantidadElementos;
+
+		for (int i = 0; i < cantidadElementos; i++) {
+			T nuevoDato;
+			cout << "Ingrese el dato " << i + 1 << ": ";
+			cin >> nuevoDato;
+
+			Nodo<T>* nuevoNodo = new Nodo<T>(nuevoDato);
+			if (cabeza == nullptr) {
+				cabeza = nuevoNodo;
+			}
+			else {
+				Nodo<T>* temp = cabeza;
+				while (temp->siguiente != nullptr) {
+					temp = temp->siguiente;
+				}
+				temp->siguiente = nuevoNodo;
+			}
+		}
+	}
+
+	void imprimirLista() {
+		char respuesta;
+		bool listaCorrecta = false;
+		do {
+			Nodo<T>* temp = cabeza;
+			while (temp != nullptr) {
+				Nodo<T>* siguiente = temp->siguiente;
+				delete temp;
+				temp = siguiente;
+			}
+
+			cabeza = nullptr;
+			agregarElementos();			
+			temp = cabeza;
+
+			cout << "La lista ingresada [";
+			while (temp != nullptr) {
+				cout << temp->dato << " -> " ;
+				temp = temp->siguiente;
+			}
+			cout << "], ¿es correcta? (s/n): ";
+			cin >> respuesta;
+
+			if (respuesta == 'S' || respuesta == 's') {
+				listaCorrecta = true;
+			}
+			else {
+				char respuesta2;
+				cout << "¿Desea ingresar otra lista? (s/n): ";
+				cin >> respuesta2;
+				if (respuesta2 == 'S' || respuesta2 == 's') {
+					continue;
+				}
+				else {
+					cout << "Gracias por usar Generador de Arboles BLAS PASCAL";
+					exit(0);
+				}
+			}
+		} while (!listaCorrecta);
+	}
+};
+
+int main() {	
+	setlocale(LC_ALL, "");
+	Lista<int> lista;
+	int opc = 0;
+	cout << "BIENVENIDO AL GENERADOR DE ARBOLES BLAS PASCAL" << endl;
+	lista.imprimirLista();
+
+	while (opc != 5) {	
+
+		cout << "\n1. Generar árbol binario."  << endl;
+		cout << "\n2. Generar árbol binario de búsqueda." << endl;
+		cout << "\n3. Generar AVL." << endl;
+		cout << "\n4. Generar árbol rojo y negro." << endl;
+		cout << "\n5. Salir del generador." << endl;
+		cout << "\nIngrese opcion: ";
+		cin >> opc;
+
+		switch (opc) {
+		case 1:
+			break;
+		case 2:
+			break;
+		case 3:
+			break;
+		case 4:
+			break;
+		}
+	}
 
 	return 0;
 }
