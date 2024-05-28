@@ -5,6 +5,7 @@ using namespace std;
 int main() {	
 	setlocale(LC_ALL, "");
 	Lista<int> lista;
+	ArbolBinarioBusqueda<int> abb;
 	int opc = 0;
 	cout << "BIENVENIDO AL GENERADOR DE ARBOLES BLAS PASCAL" << endl;
 	lista.imprimirLista();
@@ -23,6 +24,8 @@ int main() {
 		case 1:
 			break;
 		case 2:
+			abb.construirArbolDesdeLista(lista);
+			abb.imprimirGrafico();
 			break;
 		case 3:
 			break;

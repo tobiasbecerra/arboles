@@ -87,3 +87,62 @@ public:
 		} while (!listaCorrecta);
 	}
 };
+
+template <typename T>
+class ArbolBinarioBusqueda {
+private:
+	struct NodoABB {
+		T dato;
+		NodoABB* izquierda;
+		NodoABB* derecha;
+		NodoABB(T dato) : dato(dato), izquierda(nullptr), derecha(nullptr) {}
+	};
+
+	NodoABB* raiz;
+
+	// Función auxiliar para insertar un elemento en el árbol
+	NodoABB* insertarRecursivo(NodoABB* nodo, T dato) {
+		if (nodo == nullptr) {
+			nodo = new NodoABB(dato);
+		}
+		else if (dato < nodo->dato) {
+			nodo->izquierda = insertarRecursivo(nodo->izquierda, dato);
+		}
+		else if (dato > nodo->dato) {
+			nodo->derecha = insertarRecursivo(nodo->derecha, dato);
+		}
+		return nodo;
+	}
+
+public:
+	ArbolBinarioBusqueda() : raiz(nullptr) {}
+
+	// Función para construir el árbol a partir de la lista
+	void construirArbolDesdeLista(Lista<T>& lista) {
+		Nodo<T>* temp = lista.cabeza;
+		while (temp != nullptr) {
+			insertar(temp->dato);
+			temp = temp->siguiente;
+		}
+	}
+
+	// Función para insertar un elemento en el árbol
+	void insertar(T dato) {
+		raiz = insertarRecursivo(raiz, dato);
+	}
+
+	// Función para imprimir el árbol de manera gráfica
+	void imprimirGrafico() {
+		imprimirGraficoRecursivo(raiz, 0);
+	}
+
+private:
+	// Función recursiva para imprimir el árbol de manera gráfica
+	void imprimirGraficoRecursivo(NodoABB* nodo, int nivel) {
+		if (nodo != nullptr) {
+			imprimirGraficoRecursivo(nodo->derecha, nivel + 1);
+			std::cout << std::string(4 * nivel, ' ') << nodo->dato << std::endl;
+			imprimirGraficoRecursivo(nodo->izquierda, nivel + 1);
+		}
+	}
+};
