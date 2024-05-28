@@ -2,6 +2,8 @@
 #include <iostream>
 using namespace std;
 
+//CLASE NODO
+
 template <typename T>
 class Nodo {
 public:
@@ -9,6 +11,8 @@ public:
 	Nodo* siguiente;
 	Nodo(T dato) : dato(dato), siguiente(nullptr) {}
 };
+
+//CLASE LISTA
 
 template <typename T>
 class Lista {
