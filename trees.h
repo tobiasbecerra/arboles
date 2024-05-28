@@ -21,6 +21,7 @@ private:
 public:
 	Lista() :cabeza(nullptr) {};
 
+	//FUNCION AGREGAR ELEMENTOS A LA LISTA
 	void agregarElementos() {
 		int cantidadElementos;
 		cout << "\nIngrese la cantidad de elementos que utilizará (enteros): ";
@@ -45,6 +46,7 @@ public:
 		}
 	}
 
+	//FUNCION IMPRIMIR LISTA
 	void imprimirLista() {
 		char respuesta;
 		bool listaCorrecta = false;
