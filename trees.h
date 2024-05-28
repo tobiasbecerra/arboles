@@ -16,9 +16,8 @@ public:
 
 template <typename T>
 class Lista {
-private:
-	Nodo<T>* cabeza;
 public:
+    Nodo<T>* cabeza;
 	Lista() :cabeza(nullptr) {};
 
 	//FUNCION AGREGAR ELEMENTOS A LA LISTA
