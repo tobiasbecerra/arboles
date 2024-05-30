@@ -2,21 +2,21 @@
 #include "trees.h"
 using namespace std;
 
-int main() {	
+int main() {
 	setlocale(LC_ALL, "");
 	Lista<int> lista;
 	ArbolBinarioBusqueda<int> abb;
 	int opc = 0;
-	cout << "BIENVENIDO AL GENERADOR DE ARBOLES BLAS PASCAL" << endl;
+	cout << "\tBIENVENIDO AL GENERADOR DE ARBOLES BLAS PASCAL" << endl;
 	lista.imprimirLista();
 
 	while (opc != 5) {	
 
-		cout << "\n1. Generar árbol binario."  << endl;
-		cout << "\n2. Generar árbol binario de búsqueda." << endl;
-		cout << "\n3. Generar AVL." << endl;
-		cout << "\n4. Generar árbol rojo y negro." << endl;
-		cout << "\n5. Salir del generador." << endl;
+		cout << "\n\t1. Generar árbol binario."  << endl;
+		cout << "\n\t2. Generar árbol binario de búsqueda." << endl;
+		cout << "\n\t3. Generar AVL." << endl;
+		cout << "\n\t4. Generar árbol rojo y negro." << endl;
+		cout << "\n\t5. Salir del generador." << endl;
 		cout << "\nIngrese opcion: ";
 		cin >> opc;
 

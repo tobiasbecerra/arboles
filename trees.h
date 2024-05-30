@@ -23,12 +23,12 @@ public:
 	//FUNCION AGREGAR ELEMENTOS A LA LISTA
 	void agregarElementos() {
 		int cantidadElementos;
-		cout << "\nIngrese la cantidad de elementos que utilizará (enteros): ";
+		cout << "\n\tIngrese la cantidad de elementos que utilizará (enteros): ";
 		cin >> cantidadElementos;
 
 		for (int i = 0; i < cantidadElementos; i++) {
 			T nuevoDato;
-			cout << "Ingrese el dato " << i + 1 << ": ";
+			cout << "\tIngrese el dato " << i + 1 << ": ";
 			cin >> nuevoDato;
 
 			Nodo<T>* nuevoNodo = new Nodo<T>(nuevoDato);
@@ -61,7 +61,7 @@ public:
 			agregarElementos();
 			temp = cabeza;
 
-			cout << "La lista ingresada [";
+			cout << "\tLa lista ingresada [";
 			while (temp != nullptr) {
 				cout << temp->dato << " -> ";
 				temp = temp->siguiente;
@@ -74,13 +74,13 @@ public:
 			}
 			else {
 				char respuesta2;
-				cout << "¿Desea ingresar otra lista? (s/n): ";
+				cout << "\t¿Desea ingresar otra lista? (s/n): ";
 				cin >> respuesta2;
 				if (respuesta2 == 'S' || respuesta2 == 's') {
 					continue;
 				}
 				else {
-					cout << "Gracias por usar Generador de Arboles BLAS PASCAL";
+					cout << "\tGracias por usar Generador de Arboles BLAS PASCAL";
 					exit(0);
 				}
 			}
