@@ -8,6 +8,7 @@ int main() {
 	ArbolBinarioBusqueda<int> abb;
 	ArbolBinario<int> ab;
 	ArbolAVL<int> avl;
+	ArbolRN<int> arn;
 	int opc = 0;
 	cout << "\tBIENVENIDO AL GENERADOR DE ARBOLES BLAS PASCAL" << endl;
 	lista.imprimirLista();
@@ -53,8 +54,11 @@ int main() {
 			break;
 		case 4:
 			system("cls");
-
-
+			arn.construirArbolDesdeLista(lista);
+			arn.imprimir();
+			
+			cin.ignore();
+			cin.get();
 			break;
 		case 5:
 			system("cls");

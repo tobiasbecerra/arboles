@@ -389,3 +389,174 @@ private:
 		}
 	}
 };
+
+// Enumeración para los colores de los nodos
+enum Color { ROJO, NEGRO };
+
+// Clase Nodo para el árbol rojo y negro
+template <typename T>
+class NodoRN {
+public:
+	T dato;
+	NodoRN* izquierdo;
+	NodoRN* derecho;
+	NodoRN* padre;
+	Color color;
+
+	// Constructor
+	NodoRN(T dato) : dato(dato), izquierdo(nullptr), derecho(nullptr), padre(nullptr), color(NEGRO) {}
+};
+
+// Clase ArbolRN (Árbol Rojo-Negro)
+template <typename T>
+class ArbolRN {
+private:
+	NodoRN<T>* raiz;
+
+	// Función auxiliar para realizar una rotación a la izquierda
+	void rotarIzquierda(NodoRN<T>*& nodo) {
+		NodoRN<T>* hijoDerecho = nodo->derecho;
+		nodo->derecho = hijoDerecho->izquierdo;
+		if (hijoDerecho->izquierdo != nullptr)
+			hijoDerecho->izquierdo->padre = nodo;
+		hijoDerecho->padre = nodo->padre;
+		if (nodo->padre == nullptr)
+			raiz = hijoDerecho;
+		else if (nodo == nodo->padre->izquierdo)
+			nodo->padre->izquierdo = hijoDerecho;
+		else
+			nodo->padre->derecho = hijoDerecho;
+		hijoDerecho->izquierdo = nodo;
+		nodo->padre = hijoDerecho;
+	}
+
+	// Función auxiliar para realizar una rotación a la derecha
+	void rotarDerecha(NodoRN<T>*& nodo) {
+		NodoRN<T>* hijoIzquierdo = nodo->izquierdo;
+		nodo->izquierdo = hijoIzquierdo->derecho;
+		if (hijoIzquierdo->derecho != nullptr)
+			hijoIzquierdo->derecho->padre = nodo;
+		hijoIzquierdo->padre = nodo->padre;
+		if (nodo->padre == nullptr)
+			raiz = hijoIzquierdo;
+		else if (nodo == nodo->padre->izquierdo)
+			nodo->padre->izquierdo = hijoIzquierdo;
+		else
+			nodo->padre->derecho = hijoIzquierdo;
+		hijoIzquierdo->derecho = nodo;
+		nodo->padre = hijoIzquierdo;
+	}
+
+	// Función auxiliar para corregir violaciones después de la inserción
+	void arreglarInsercion(NodoRN<T>*& nodo) {
+		NodoRN<T>* padre = nullptr;
+		NodoRN<T>* abuelo = nullptr;
+		while (nodo != raiz && nodo->color != NEGRO && nodo->padre->color == ROJO) {
+			padre = nodo->padre;
+			abuelo = nodo->padre->padre;
+			if (padre == abuelo->izquierdo) {
+				NodoRN<T>* tio = abuelo->derecho;
+				if (tio != nullptr && tio->color == ROJO) {
+					abuelo->color = ROJO;
+					padre->color = NEGRO;
+					tio->color = NEGRO;
+					nodo = abuelo;
+				}
+				else {
+					if (nodo == padre->derecho) {
+						rotarIzquierda(padre);
+						nodo = padre;
+						padre = nodo->padre;
+					}
+					rotarDerecha(abuelo);
+					swap(padre->color, abuelo->color);
+					nodo = padre;
+				}
+			}
+			else {
+				NodoRN<T>* tio = abuelo->izquierdo;
+				if (tio != nullptr && tio->color == ROJO) {
+					abuelo->color = ROJO;
+					padre->color = NEGRO;
+					tio->color = NEGRO;
+					nodo = abuelo;
+				}
+				else {
+					if (nodo == padre->izquierdo) {
+						rotarDerecha(padre);
+						nodo = padre;
+						padre = nodo->padre;
+					}
+					rotarIzquierda(abuelo);
+					swap(padre->color, abuelo->color);
+					nodo = padre;
+				}
+			}
+		}
+		raiz->color = NEGRO;
+	}
+
+	// Función auxiliar para imprimir el árbol recursivamente
+	void imprimirAux(NodoRN<T>* nodo, int espacio) {
+		if (nodo == nullptr)
+			return;
+
+		espacio += 10;
+
+		imprimirAux(nodo->derecho, espacio);
+
+		cout << endl;
+		for (int i = 10; i < espacio; i++)
+			cout << " ";
+
+		if (nodo->color == ROJO)
+			cout << "\033[1;31m" << nodo->dato << "\033[0m" << endl;
+		else
+			cout << nodo->dato << endl;
+
+		imprimirAux(nodo->izquierdo, espacio);
+	}
+
+public:
+	ArbolRN() : raiz(nullptr) {}
+
+	void construirArbolDesdeLista(Lista<T>& lista) {
+        Nodo<T>* temp = lista.cabeza;
+        while (temp != nullptr) {
+            insertar(temp->dato);
+            temp = temp->siguiente;
+        }
+    }
+
+	// Función para insertar un elemento en el árbol
+	void insertar(T dato) {
+		NodoRN<T>* nuevoNodo = new NodoRN<T>(dato);
+		NodoRN<T>* padre = nullptr;
+		NodoRN<T>* actual = raiz;
+
+		while (actual != nullptr) {
+			padre = actual;
+			if (dato < actual->dato)
+				actual = actual->izquierdo;
+			else
+				actual = actual->derecho;
+		}
+
+		nuevoNodo->padre = padre;
+		if (padre == nullptr)
+			raiz = nuevoNodo;
+		else if (dato < padre->dato)
+			padre->izquierdo = nuevoNodo;
+		else
+			padre->derecho = nuevoNodo;
+
+		nuevoNodo->color = ROJO;
+
+		arreglarInsercion(nuevoNodo);
+	}
+
+	// Función para imprimir el árbol
+	void imprimir() {
+		imprimirAux(raiz, 0);
+	}
+};
