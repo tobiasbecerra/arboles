@@ -99,7 +99,7 @@ private:
 		NodoABB(T dato) : dato(dato), izquierda(nullptr), derecha(nullptr) {}
 	};
 
-	NodoABB* raiz;
+	
 
 	// Función auxiliar para insertar un elemento en el árbol
 	NodoABB* insertarRecursivo(NodoABB* nodo, T dato) {
@@ -117,7 +117,7 @@ private:
 
 public:
 	ArbolBinarioBusqueda() : raiz(nullptr) {}
-
+	NodoABB* raiz;
 	// Función para construir el árbol a partir de la lista
 	void construirArbolDesdeLista(Lista<T>& lista) {
 		Nodo<T>* temp = lista.cabeza;
@@ -135,6 +135,30 @@ public:
 	// Función para imprimir el árbol de manera gráfica
 	void imprimirGrafico() {
 		imprimirGraficoRecursivo(raiz, 0);
+	}
+
+	void preorden(NodoABB* nodo) {
+		if (nodo != nullptr) {
+			std::cout << nodo->dato << " ";
+			preorden(nodo->izquierda);
+			preorden(nodo->derecha);
+		}
+	}
+
+	void inorden(NodoABB* nodo) {
+		if (nodo != nullptr) {
+			inorden(nodo->izquierda);
+			std::cout << nodo->dato << " ";
+			inorden(nodo->derecha);
+		}
+	}
+
+	void postorden(NodoABB* nodo) {
+		if (nodo != nullptr) {
+			postorden(nodo->izquierda);
+			postorden(nodo->derecha);
+			std::cout << nodo->dato << " ";
+		}
 	}
 
 private:
@@ -304,7 +328,7 @@ private:
 		NodoAB(T dato) : dato(dato), izquierda(nullptr), derecha(nullptr) {}
 	};
 
-	NodoAB* raiz;
+	
 
 	// Función auxiliar para insertar un elemento en el árbol de forma secuencial usando una cola
 	NodoAB* insertar(NodoAB* nodo, T dato) {
@@ -339,7 +363,7 @@ private:
 
 public:
 	ArbolBinario() : raiz(nullptr) {}
-
+	NodoAB* raiz;
 	// Función para construir el árbol a partir de la lista
 	void construirArbolDesdeLista(Lista<T>& lista) {
 		Nodo<T>* temp = lista.cabeza;
@@ -357,6 +381,30 @@ public:
 	// Función para imprimir el árbol de manera gráfica
 	void imprimirGrafico() {
 		imprimirGraficoRecursivo(raiz, 0);
+	}
+
+	void preorden(NodoAB* nodo) {
+		if (nodo != nullptr) {
+			std::cout << nodo->dato << " ";
+			preorden(nodo->izquierda);
+			preorden(nodo->derecha);
+		}
+	}
+
+	void inorden(NodoAB* nodo) {
+		if (nodo != nullptr) {
+			inorden(nodo->izquierda);
+			std::cout << nodo->dato << " ";
+			inorden(nodo->derecha);
+		}
+	}
+
+	void postorden(NodoAB* nodo) {
+		if (nodo != nullptr) {
+			postorden(nodo->izquierda);
+			postorden(nodo->derecha);
+			std::cout << nodo->dato << " ";
+		}
 	}
 
 private:

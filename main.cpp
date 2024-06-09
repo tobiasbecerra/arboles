@@ -32,6 +32,13 @@ int main() {
 			cout << "\nRepresentación gráfica del árbol binario:\n";
 			ab.imprimirGrafico();
 
+			cout << "Recorrido Pre-Order: ";
+			ab.preorden(ab.raiz);
+			cout << "\nRecorrido In-Order: ";
+			ab.inorden(ab.raiz);
+			cout << "\nRecorrido Post-Order: ";
+			ab.postorden(ab.raiz);
+
 			cin.ignore();
 			cin.get();
 			break;
@@ -40,6 +47,14 @@ int main() {
 			abb.construirArbolDesdeLista(lista);
 			cout << "\nRepresentación gráfica del árbol binario de búsqueda:\n";
 			abb.imprimirGrafico();
+
+			cout << "Recorrido Pre-Order: ";
+			abb.preorden(abb.raiz);
+			cout << "\nRecorrido In-Order: ";
+			abb.inorden(abb.raiz);
+			cout << "\nRecorrido Post-Order: ";
+			abb.postorden(abb.raiz);
+
 			cin.ignore();
 			cin.get();
 			break;
