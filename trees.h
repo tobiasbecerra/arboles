@@ -311,6 +311,7 @@ public:
 	void imprimirGrafico() {
 		imprimirGraficoRecursivo(raiz, 0);
 	}
+
 };
 
 // CLASE ARBOL BINARIO

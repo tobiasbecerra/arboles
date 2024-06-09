@@ -39,7 +39,7 @@ int main() {
 		case 2:
 			system("cls");
 			abb.construirArbolDesdeLista(lista);
-			cout << "\nRepresentación gráfica del árbol binario:\n";
+			cout << "\nRepresentación gráfica del árbol binario de búsqueda:\n";
 			abb.imprimirGrafico();
 			cin.ignore();
 			cin.get();
@@ -47,7 +47,7 @@ int main() {
 		case 3:
 			system("cls");
 			avl.construirArbolDesdeLista(lista);
-			cout << "\nRepresentación gráfica del árbol binario:\n";
+			cout << "\nRepresentación gráfica del árbol AVL:\n";
 			avl.imprimirGrafico();
 			cin.ignore();
 			cin.get();
@@ -55,6 +55,7 @@ int main() {
 		case 4:
 			system("cls");
 			arn.construirArbolDesdeLista(lista);
+			cout << "\nRepresentación gráfica del árbol rojo y negro:\n";
 			arn.imprimir();
 			
 			cin.ignore();
