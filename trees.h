@@ -87,51 +87,6 @@ public:
 			}
 		} while (!listaCorrecta);
 	}
-
-	// Recorrido Preorden
-	void preorden(Nodo<T>* nodo) {
-		if (nodo != nullptr) {
-			cout << nodo->dato << " ";
-			preorden(nodo->siguiente);
-		}
-	}
-
-	// Recorrido Inorden
-	void inorden(Nodo<T>* nodo) {
-		if (nodo != nullptr) {
-			inorden(nodo->siguiente);
-			cout << nodo->dato << " ";
-		}
-	}
-
-	// Recorrido Postorden
-	void postorden(Nodo<T>* nodo) {
-		if (nodo != nullptr) {
-			postorden(nodo->siguiente);
-			cout << nodo->dato << " ";
-		}
-	}
-
-	// Función para iniciar el recorrido preorden
-	void recorrerPreorden() {
-		cout << "\nRecorrido PRE-ORDER --> ";
-		preorden(cabeza);
-		cout << endl;
-	}
-
-	// Función para iniciar el recorrido inorden
-	void recorrerInorden() {
-		cout << "\nRecorrido IN-ORDER --> ";
-		inorden(cabeza);
-		cout << endl;
-	}
-
-	// Función para iniciar el recorrido postorden
-	void recorrerPostorden() {
-		cout << "\nRecorrido POST-ORDER --> ";
-		postorden(cabeza);
-		cout << endl;
-	}
 };
 
 template <typename T>
@@ -205,7 +160,7 @@ private:
 		NodoAVL(T dato) : dato(dato), izquierda(nullptr), derecha(nullptr), altura(1) {}
 	};
 
-	NodoAVL* raiz;
+	
 
 
 	int obtenerAltura(NodoAVL* nodo) {
@@ -293,7 +248,7 @@ private:
 
 public:
 	ArbolAVL() : raiz(nullptr) {}
-
+	NodoAVL* raiz;
 
 	void construirArbolDesdeLista(Lista<T>& lista) {
 		Nodo<T>* temp = lista.cabeza;
@@ -310,6 +265,30 @@ public:
 
 	void imprimirGrafico() {
 		imprimirGraficoRecursivo(raiz, 0);
+	}
+
+	void preorden(NodoAVL* nodo) {
+		if (nodo != nullptr) {
+			std::cout << nodo->dato << " ";
+			preorden(nodo->izquierda);
+			preorden(nodo->derecha);
+		}
+	}
+
+	void inorden(NodoAVL* nodo) {
+		if (nodo != nullptr) {
+			inorden(nodo->izquierda);
+			std::cout << nodo->dato << " ";
+			inorden(nodo->derecha);
+		}
+	}
+
+	void postorden(NodoAVL* nodo) {
+		if (nodo != nullptr) {
+			postorden(nodo->izquierda);
+			postorden(nodo->derecha);
+			std::cout << nodo->dato << " ";
+		}
 	}
 
 };

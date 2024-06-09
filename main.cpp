@@ -13,7 +13,7 @@ int main() {
 	cout << "\tBIENVENIDO AL GENERADOR DE ARBOLES BLAS PASCAL" << endl;
 	lista.imprimirLista();
 
-	while (opc != 6) {
+	while (opc != 5) {
 
 		system("cls");
 
@@ -21,8 +21,7 @@ int main() {
 		cout << "\n\t2. Generar árbol binario de búsqueda." << endl;
 		cout << "\n\t3. Generar AVL." << endl;
 		cout << "\n\t4. Generar árbol rojo y negro." << endl;
-		cout << "\n\t5. Mostrar recorridos Pre, In y Post ORDER del árbol ingresado." << endl;
-		cout << "\n\t6. Salir del generador." << endl;
+		cout << "\n\t5. Salir del generador." << endl;
 		cout << "\nIngrese opcion: ";
 		cin >> opc;
 
@@ -49,6 +48,13 @@ int main() {
 			avl.construirArbolDesdeLista(lista);
 			cout << "\nRepresentación gráfica del árbol AVL:\n";
 			avl.imprimirGrafico();
+
+			cout << "Recorrido Pre-Order: ";
+			avl.preorden(avl.raiz);
+			cout << "\nRecorrido In-Order: ";
+			avl.inorden(avl.raiz);
+			cout << "\nRecorrido Post-Order: ";
+			avl.postorden(avl.raiz);
 			cin.ignore();
 			cin.get();
 			break;
@@ -60,15 +66,6 @@ int main() {
 			
 			cin.ignore();
 			cin.get();
-			break;
-		case 5:
-			system("cls");
-			lista.recorrerPreorden();
-			lista.recorrerInorden();
-			lista.recorrerPostorden();
-			cin.ignore();
-			cin.get();
-
 			break;
 		}
 	}
