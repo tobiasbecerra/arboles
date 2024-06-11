@@ -10,7 +10,7 @@ int main() {
 	ArbolAVL<int> avl;
 	ArbolRN<int> arn;
 	int opc = 0;
-	cout << "\tBIENVENIDO AL GENERADOR DE ARBOLES BLAS PASCAL" << endl;
+	cout << "\n\tBIENVENIDO AL GENERADOR DE ARBOLES BLAS PASCAL" << endl;
 	lista.imprimirLista();
 
 	while (opc != 5) {
@@ -22,7 +22,7 @@ int main() {
 		cout << "\n\t3. Generar AVL." << endl;
 		cout << "\n\t4. Generar árbol rojo y negro." << endl;
 		cout << "\n\t5. Salir del generador." << endl;
-		cout << "\nIngrese opcion: ";
+		cout << "\n\tIngrese opcion: ";
 		cin >> opc;
 
 		switch (opc) {
